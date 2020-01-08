@@ -1,6 +1,7 @@
 import React from "react";
 import Collapsible from "react-collapsible";
 import { Space, IconPrimary } from "dnb-ui-lib/components";
+import { makeUniqueId } from "dnb-ui-lib/shared/component-helper";
 import styled from "@emotion/styled";
 
 export default function Accordion({
@@ -10,24 +11,36 @@ export default function Accordion({
   left,
   open,
   children,
+  trigger,
   ...leftover
 }) {
   const [isVisible, setVisibility] = React.useState(Boolean(open));
+  const [randomId] = React.useState(makeUniqueId());
   return (
     <StyledCollapsible
       className={isVisible ? "is-visible" : null}
       {...{ top, right, bottom, left }}
     >
       <Collapsible
+        trigger={
+          <span
+            role="button"
+            aria-expanded={isVisible}
+            aria-controls={randomId}
+          >
+            {trigger}
+          </span>
+        }
         overflowWhenOpen="visible" // to make sure our popup can be shown outside of the box
         tabIndex={0} // make sure we can focus this!
-        triggerSibling={() => <IconPrimary icon="chevron-down" />}
+        triggerSibling={() => <IconPrimary icon="chevron-down" aria-hidden />}
         onOpening={() => setVisibility(true)}
         onClose={() => setVisibility(false)}
         open={open}
         {...leftover}
       >
-        {children}
+        {/* set id attribute because the trigger button uses "aria-controls" */}
+        <div id={randomId}>{children}</div>
       </Collapsible>
     </StyledCollapsible>
   );
