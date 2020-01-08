@@ -1,8 +1,14 @@
 {
   "name": "accordion-styling-example",
   "version": "1.0.0",
-  "description": "",
-  "keywords": [],
+  "description": "Eufemia Demos using Create React App",
+  "license": "SEE LICENSE IN LICENSE FILE",
+  "author": "DNB Team & Tobias Høegh",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tujoworker/eufemia-accordion-styling-example.git"
+  },
+  "private": true,
   "main": "src/index.js",
   "dependencies": {
     "@emotion/cache": "10.0.27",
@@ -11,6 +17,7 @@
     "dnb-ui-lib": "6.0.0-beta.13",
     "node-sass": "4.13.0",
     "react": "16.12.0",
+    "react-app-polyfill": "^1.0.5",
     "react-collapsible": "2.6.2",
     "react-dom": "16.12.0",
     "react-scripts": "3.0.1"
